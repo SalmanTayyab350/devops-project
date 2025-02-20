@@ -1,0 +1,27 @@
+name: Staging CI
+
+on:
+  pull_request:
+    branches:
+      - release
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: |
+          npm install
+          npm test
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Lint code
+        run: |
+          npm install
+          npm run lint
